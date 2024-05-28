@@ -23,9 +23,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
 Route::get('/members', [MembersController::class, 'index'])
     ->name('members');
+
+Route::post('/members', [MembersController::class, 'search'])
+    ->name('searchMembers');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
